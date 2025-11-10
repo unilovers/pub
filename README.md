@@ -2,4 +2,5 @@
 
 ## Grupo
 
- - Renato Teixeira Barretp
+ - Renato Teixeira Barreto
+ - Gustavo Antonio Silva Oliveira
