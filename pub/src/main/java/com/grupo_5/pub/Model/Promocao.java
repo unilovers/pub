@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="Promocao")
-public class PromocaoModel {
+public class Promocao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -31,7 +31,7 @@ public class PromocaoModel {
     private BigDecimal valorDesconto;
 
 
-    public PromocaoModel() {}
+    public Promocao() {}
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}

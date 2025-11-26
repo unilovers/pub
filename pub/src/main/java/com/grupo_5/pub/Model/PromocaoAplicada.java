@@ -25,5 +25,49 @@ public class PromocaoAplicada {
 
     private BigDecimal valorDescontoAplicado;
 
-    // GETTERS E SETTERS
+    // --- Construtor Vazio (Obrigatório) ---
+    public PromocaoAplicada() {
+    }
+
+    // --- GETTERS E SETTERS ---
+
+    public PromocaoAplicadaId getId() {
+        return id;
+    }
+
+    public void setId(PromocaoAplicadaId id) {
+        this.id = id;
+    }
+
+    public Comanda getComanda() {
+        return comanda;
+    }
+
+    public void setComanda(Comanda comanda) {
+        this.comanda = comanda;
+    }
+
+    public Promocao getPromocao() {
+        return promocao;
+    }
+
+    public void setPromocao(Promocao promocao) {
+        this.promocao = promocao;
+    }
+
+    public LocalDateTime getDataAplicacao() {
+        return dataAplicacao;
+    }
+
+    public void setDataAplicacao(LocalDateTime dataAplicacao) {
+        this.dataAplicacao = dataAplicacao;
+    }
+
+    public BigDecimal getValorDescontoAplicado() {
+        return valorDescontoAplicado;
+    }
+
+    public void setValorDescontoAplicado(BigDecimal valorDescontoAplicado) {
+        this.valorDescontoAplicado = valorDescontoAplicado;
+    }
 }

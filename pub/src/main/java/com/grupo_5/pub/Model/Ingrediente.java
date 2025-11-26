@@ -22,57 +22,43 @@ public class Ingrediente {
     @Column(name = "estoque_atual", precision = 10, scale = 2)
     private BigDecimal estoqueAtual;
 
+    // --- NOVO CAMPO ADICIONADO ---
+    @Column(name = "estoque_minimo", precision = 10, scale = 2)
+    private BigDecimal estoqueMinimo;
+    // -----------------------------
+
     @OneToMany(mappedBy = "ingrediente", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ReceitaBebida> receitas = new ArrayList<>();
 
     public Ingrediente() {
     }
 
-    public Ingrediente(Integer id, String nome, String unidadeMedida, BigDecimal estoqueAtual) {
+    public Ingrediente(Integer id, String nome, String unidadeMedida, BigDecimal estoqueAtual, BigDecimal estoqueMinimo) {
         this.id = id;
         this.nome = nome;
         this.unidadeMedida = unidadeMedida;
         this.estoqueAtual = estoqueAtual;
+        this.estoqueMinimo = estoqueMinimo;
     }
 
+    // Getters e Setters
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public Integer getId() {
-        return id;
-    }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getUnidadeMedida() { return unidadeMedida; }
+    public void setUnidadeMedida(String unidadeMedida) { this.unidadeMedida = unidadeMedida; }
 
-    public String getNome() {
-        return nome;
-    }
+    public BigDecimal getEstoqueAtual() { return estoqueAtual; }
+    public void setEstoqueAtual(BigDecimal estoqueAtual) { this.estoqueAtual = estoqueAtual; }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    // --- NOVOS GETTERS E SETTERS ---
+    public BigDecimal getEstoqueMinimo() { return estoqueMinimo; }
+    public void setEstoqueMinimo(BigDecimal estoqueMinimo) { this.estoqueMinimo = estoqueMinimo; }
+    // -------------------------------
 
-    public String getUnidadeMedida() {
-        return unidadeMedida;
-    }
-
-    public void setUnidadeMedida(String unidadeMedida) {
-        this.unidadeMedida = unidadeMedida;
-    }
-
-    public BigDecimal getEstoqueAtual() {
-        return estoqueAtual;
-    }
-
-    public void setEstoqueAtual(BigDecimal estoqueAtual) {
-        this.estoqueAtual = estoqueAtual;
-    }
-
-    public List<ReceitaBebida> getReceitas() {
-        return receitas;
-    }
-
-    public void setReceitas(List<ReceitaBebida> receitas) {
-        this.receitas = receitas;
-    }
+    public List<ReceitaBebida> getReceitas() { return receitas; }
+    public void setReceitas(List<ReceitaBebida> receitas) { this.receitas = receitas; }
 }

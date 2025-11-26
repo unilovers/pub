@@ -37,8 +37,8 @@ public class ComandaController {
     // 1) ABRIR COMANDA
     // ---------------------------------------------------------
     @PostMapping("/abrir")
-    public ResponseEntity<?> abrir(@RequestParam Long idCliente,
-                                   @RequestParam Long idMesa) {
+    public ResponseEntity<?> abrir(@RequestParam Integer idCliente,
+                                   @RequestParam Integer idMesa) {
 
         Comanda c = new Comanda();
         c.setStatus("ABERTA");
@@ -54,8 +54,8 @@ public class ComandaController {
     // 2) ADICIONAR ITEM
     // ---------------------------------------------------------
     @PostMapping("/{id}/itens")
-    public ResponseEntity<?> addItem(@PathVariable Long id,
-                                     @RequestParam Long idBebida,
+    public ResponseEntity<?> addItem(@PathVariable Integer id,
+                                     @RequestParam Integer idBebida,
                                      @RequestParam Integer qtd) {
 
         Optional<Comanda> comandaOpt = comandaRepo.findById(id);
@@ -89,8 +89,8 @@ public class ComandaController {
     // 3) REMOVER ITEM
     // ---------------------------------------------------------
     @DeleteMapping("/{id}/itens/{itemId}")
-    public ResponseEntity<?> deleteItem(@PathVariable Long id,
-                                        @PathVariable Long itemId) {
+    public ResponseEntity<?> deleteItem(@PathVariable Integer id,
+                                        @PathVariable Integer itemId) {
 
         Optional<ItemComanda> itemOpt = itemRepo.findById(itemId);
         Optional<Comanda> comandaOpt = comandaRepo.findById(id);
@@ -115,8 +115,8 @@ public class ComandaController {
     // 4) FECHAR COMANDA (com ou sem promoção)
     // ---------------------------------------------------------
     @PostMapping("/{id}/fechar")
-    public ResponseEntity<?> fechar(@PathVariable Long id,
-                                    @RequestParam(required = false) Long idPromocao) {
+    public ResponseEntity<?> fechar(@PathVariable Integer id,
+                                    @RequestParam(required = false) Integer idPromocao) {
 
         Optional<Comanda> opt = comandaRepo.findById(id);
         if (opt.isEmpty()) return ResponseEntity.badRequest().body("Comanda não encontrada");
@@ -173,7 +173,7 @@ public class ComandaController {
     // 6) BUSCAR POR ID
     // ---------------------------------------------------------
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscar(@PathVariable Long id) {
+    public ResponseEntity<?> buscar(@PathVariable Integer id) {
         return ResponseEntity.of(comandaRepo.findById(id));
     }
 }

@@ -1,6 +1,6 @@
 package com.grupo_5.pub.Controller;
 
-import com.grupo_5.pub.Model.PromocaoModel;
+import com.grupo_5.pub.Model.Promocao;
 import com.grupo_5.pub.Repository.PromocaoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,41 +23,41 @@ public class PromocaoController {
 
 
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<PromocaoModel> criarPromocao(@RequestBody PromocaoModel novaPromocao) {
-        PromocaoModel salva = promocaoRepository.save(novaPromocao);
+    public ResponseEntity<Promocao> criarPromocao(@RequestBody Promocao novaPromocao) {
+        Promocao salva = promocaoRepository.save(novaPromocao);
         return ResponseEntity.status(HttpStatus.CREATED).body(salva);
     }
 
 
     @GetMapping
-    public ResponseEntity<List<PromocaoModel>> listarTodas() {
-        List<PromocaoModel> promocoes = promocaoRepository.findAll();
+    public ResponseEntity<List<Promocao>> listarTodas() {
+        List<Promocao> promocoes = promocaoRepository.findAll();
         return ResponseEntity.ok(promocoes);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PromocaoModel> buscarPorId(@PathVariable Integer id) {
-        Optional<PromocaoModel> promocaoOpt = promocaoRepository.findById(id);
+    public ResponseEntity<Promocao> buscarPorId(@PathVariable Integer id) {
+        Optional<Promocao> promocaoOpt = promocaoRepository.findById(id);
         return promocaoOpt.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping(value = "/ativas")
-    public ResponseEntity<List<PromocaoModel>> listarAtivas() {
-        List<PromocaoModel> ativas = promocaoRepository.findByDataFimAfter(LocalDate.now());
+    public ResponseEntity<List<Promocao>> listarAtivas() {
+        List<Promocao> ativas = promocaoRepository.findByDataFimAfter(LocalDate.now());
         return ResponseEntity.ok(ativas);
     }
 
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<PromocaoModel> atualizarPromocao(@PathVariable Integer id,
-                                                           @RequestBody PromocaoModel atualizada) {
-        Optional<PromocaoModel> promocaoOpt = promocaoRepository.findById(id);
+    public ResponseEntity<Promocao> atualizarPromocao(@PathVariable Integer id,
+                                                      @RequestBody Promocao atualizada) {
+        Optional<Promocao> promocaoOpt = promocaoRepository.findById(id);
         if (promocaoOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        PromocaoModel existente = promocaoOpt.get();
+        Promocao existente = promocaoOpt.get();
 
         existente.setNome(atualizada.getNome());
         existente.setDescricao(atualizada.getDescricao());
@@ -66,7 +66,7 @@ public class PromocaoController {
         existente.setTipoDesconto(atualizada.getTipoDesconto());
         existente.setValorDesconto(atualizada.getValorDesconto());
 
-        PromocaoModel salva = promocaoRepository.save(existente);
+        Promocao salva = promocaoRepository.save(existente);
         return ResponseEntity.ok(salva);
     }
 
