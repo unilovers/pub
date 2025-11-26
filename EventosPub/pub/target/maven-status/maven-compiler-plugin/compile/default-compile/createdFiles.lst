@@ -1,0 +1,4 @@
+com\grupo_5\pub\controller\EventoController.class
+com\grupo_5\pub\model\Evento.class
+com\grupo_5\pub\PubApplication.class
+com\grupo_5\pub\repository\EventoRepository.class
